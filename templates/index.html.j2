@@ -1,0 +1,90 @@
+{%extends "base.html.j2"%}
+{%block title%}Home{%endblock%}
+
+{%block body%}
+<div class="container py-4">
+    <h4>
+        Welcome, {{session['brycegayan_username']}}!
+    </h4>
+
+    {# Style heavily inspired by https://getbootstrap.com/docs/5.2/examples/jumbotron/ #}
+    <div class="row align-items-md-stretch mt-4">
+        <div class="col-md-3 mb-3 my-3">
+            <div class="h-100 p-3 text-bg-dark rounded-3">
+                <h2>Status</h2>
+                <h3 class="text-center">{{status}}</h3>
+                {%if status != "Predictions Submitted"%}
+                <a href="predict" class="btn btn-outline-light" role="button">Finalize Predictions</a>
+                {%endif%}
+            </div>
+        </div>
+        <div class="col-md-9  my-3">
+            <div class="h-100 p-3 bg-light border rounded-3">
+                <h2>Scoring System</h2>
+                <p>Your prediction for each game will be scored based on the accuracy of your predicted winner, spread,
+                    and total points scored</p>
+                <ul>
+                    <li>Winner: 10 points</li>
+                    <li>Tie: 5 points</li>
+                    <li>Spread: 10 - abs(predicted spread-actual spread) [can't be negative]</li>
+                    <li>Points: 8 - 0.5*abs(predicted points - actual points) [can't be negative]</li>
+                    <li>PERFECT GAME: 50 points for a PERFECT prediction</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row align-items-md-stretch">
+        <div class="col-lg-4 h-100 my-3">
+            <div class="h-100 p-3 bg-light border rounded-3">
+                <h2>League Standings</h2>
+                {# Relied heavily upon https://getbootstrap.com/docs/5.2/components/carousel/ #}
+                <div id="carousel" class="carousel carousel-dark slide" data-bs-ride="false">
+                    <div class="carousel-inner">
+                        {%for i in range(leagues|length)%}
+                        <div class="carousel-item {%if i==0%}active{%endif%} text-center">
+                            <div class="container d-block w-100">
+                                <p>{{leagues[i]['name']}}</p>
+                                <h2>{{places[i]}}</h2>
+                            </div>
+                        </div>
+                        {%endfor%}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 my-3">
+            <div class="h-100 p-3 text-bg-dark rounded-3">
+                <h2>Create League</h2>
+                <form action="create-league">
+                    <label for="league-name" class="form-label">League Name: </label>
+                    <input class="form-control" type="text" id="league-name" name="name" required>
+                    <label for="league-code" class="form-label">Join Code: </label>
+                    <input class="form-control" type="text" id="league-code" name="code" required>
+                    <input class="btn btn-outline-light mt-3" type="submit">
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-4 my-3">
+            <div class="h-100 p-3 bg-light border rounded-3">
+                <h2>Join League</h2>
+                <form action="join-league">
+                    <label for="league-code" class="form-label">League Code: </label>
+                    <input type="text" id="league-code" name="leagueCode" class="form-control">
+                    <input class="btn btn-outline-secondary mt-3" type="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

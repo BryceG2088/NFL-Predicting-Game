@@ -1,0 +1,59 @@
+{%extends "base.html.j2"%}
+{%block title%}{{name}}{%endblock%}
+
+{%block body%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-auto">
+            <h4 class="py-3">
+                {{name}}
+            </h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <h5 class="py-2">Standings</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            {%for i in range(standings|length)%}
+                            <tr {%if standings[i][2]==session['brycegayan_username']%} class="table-active" {%endif%}>
+                                <td>{{standings[i][2]}}</td>
+                                <td>{{standings[i][0]}}</td>
+                            </tr>
+                            {%endfor%}
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="col-md-8">
+                    <h5 class="py-2">Predictions</h5>
+                    {%if info%}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>User</th>
+                                {%for i in range(numMatchups)%}
+                                <th>{{info[i]['team1']}}</th>
+                                <th>{{info[i]['team2']}}</th>
+                                {%endfor%}
+                            </tr>
+                            {%for i in range((info|length/numMatchups)|int)%}
+                            <tr>
+                                <td>{{info[i*numMatchups]['username']}}</td>
+                                {%for ii in range(numMatchups)%}
+                                <td>{{info[i*numMatchups+ii]['score1']}}</td>
+                                <td>{{info[i*numMatchups+ii]['score2']}}</td>
+                                {%endfor%}
+                            </tr>
+                            {%endfor%}
+                        </table>
+                    </div>
+                    {%else%}
+                    <p>Check back once the week has started or when players have made their picks</p>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
