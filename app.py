@@ -17,6 +17,14 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 mysql = MySQL(app)
 
 
+@app.route('/test_db')
+def test_db():
+    cur = mysql.connection.cursor()
+    cur.execute('SHOW TABLES;')
+    tables = cur.fetchall()
+    cur.close()
+    return f"Tables: {tables}"
+
 @app.route('/')
 def index():
     error = getErrorMessage(request.values.get('error'))
