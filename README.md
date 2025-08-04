@@ -199,40 +199,14 @@ The application supports different configurations:
 - XSS protection through proper escaping
 - Secure session management
 
-## 🚀 Deployment
-
-### Production Deployment Checklist
-- [ ] Set `FLASK_ENV=production`
-- [ ] Configure HTTPS
-- [ ] Use strong secret key
-- [ ] Set up database with minimal privileges
-- [ ] Configure proper logging
-- [ ] Set up monitoring and alerts
-- [ ] Regular database backups
-
-### Recommended Hosting Platforms
-- **Heroku** - Easy deployment with PostgreSQL
-- **AWS EC2** - Full control with RDS
-- **DigitalOcean** - VPS with managed MySQL
-- **Railway** - Modern platform with automatic deployments
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 📞 Contact
 
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **LinkedIn**: [Your LinkedIn Profile]
-- **Email**: your.email@example.com
+- **GitHub**: [@BryceG2088](https://github.com/BryceG2088)
+- **LinkedIn**: [Bryce Gayan](www.linkedin.com/in/bryce-gayan-4532aa243)
 
 ## 🙏 Acknowledgments
 
