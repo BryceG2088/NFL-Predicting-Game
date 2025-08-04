@@ -2,9 +2,6 @@
 
 A full-stack web application for predicting NFL game outcomes and competing in fantasy-style leagues with friends. Built with modern web technologies and security best practices.
 
-## 🏈 Live Demo
-[Add your deployed application URL here]
-
 ## 🎯 Project Overview
 
 This application demonstrates full-stack development skills with a focus on:
