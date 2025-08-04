@@ -6,6 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-auto">
             <form action="enter-predictions">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                 <table class="table table-striped table-responsive">
                     <tr>
                         <th>Home Team</th>
@@ -16,18 +17,18 @@
                     {%for i in range(matchups|length)%}
                     <tr>
                         <td><label for="{{matchups[i][0]}}">{{matchups[i][0]}}</label></td>
-                        <td><input class="prediction" type="number" id="{{matchups[i][0]}}" min="0" name="{{matchups[i][0]}}"
-                                value="{{savedPredictions[i][1]}}"></td>
+                        <td><input class="prediction" type="number" id="{{matchups[i][0]}}" min="0" max="999" name="{{matchups[i][0]}}"
+                                value="{{savedPredictions[i][1]}}" required></td>
                         </td>
                         <td><label for="{{matchups[i][1]}}">{{matchups[i][1]}}</label></td>
-                        <td><input class="prediction" type="number" id="{{matchups[i][1]}}" min="0" name="{{matchups[i][1]}}"
-                                value="{{savedPredictions[i][3]}}"></td>
+                        <td><input class="prediction" type="number" id="{{matchups[i][1]}}" min="0" max="999" name="{{matchups[i][1]}}"
+                                value="{{savedPredictions[i][3]}}" required></td>
                         </td>
                     </tr>
                     {%endfor%}
                 </table>
                 <div class="text-center pb-5">
-                    <input class="btn btn-primary" type="submit" name="submit">
+                    <input class="btn btn-primary" type="submit" name="submit" value="Submit Predictions">
                     <button class="btn btn-primary" type="submit" name="save" value="Save">Save</button>
                 </div>
             </form>
