@@ -199,10 +199,6 @@ The application supports different configurations:
 - XSS protection through proper escaping
 - Secure session management
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 📞 Contact
 
 - **GitHub**: [@BryceG2088](https://github.com/BryceG2088)
