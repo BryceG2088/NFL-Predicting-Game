@@ -202,7 +202,7 @@ The application supports different configurations:
 ## 📞 Contact
 
 - **GitHub**: [@BryceG2088](https://github.com/BryceG2088)
-- **LinkedIn**: [Bryce Gayan](www.linkedin.com/in/bryce-gayan-4532aa243)
+- **LinkedIn**: [Bryce Gayan](https://www.linkedin.com/in/bryce-gayan-4532aa243)
 
 ## 🙏 Acknowledgments
 
