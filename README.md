@@ -1,53 +1,122 @@
-# NFL Predicting Game
+# NFL Game Prediction Platform
 
-A Flask-based web application for predicting NFL game outcomes and competing in leagues with friends.
+A full-stack web application for predicting NFL game outcomes and competing in fantasy-style leagues with friends. Built with modern web technologies and security best practices.
 
-## Features
+## 🏈 Live Demo
+[Add your deployed application URL here]
 
-- User authentication and registration
-- NFL game prediction system
-- League creation and management
-- Real-time scoring based on ESPN API data
-- Responsive Bootstrap UI
+## 🎯 Project Overview
 
-## Security Improvements Made
+This application demonstrates full-stack development skills with a focus on:
+- **Backend Development**: Flask web framework with MySQL database
+- **Frontend Development**: Responsive Bootstrap UI with Jinja2 templating
+- **Security Implementation**: CSRF protection, input validation, secure authentication
+- **API Integration**: Real-time NFL data from ESPN API
+- **Database Design**: Relational database with proper normalization
+- **DevOps**: Environment configuration and deployment readiness
 
-### 🔒 Critical Security Fixes
-- **CSRF Protection**: Added CSRF tokens to all forms
-- **Input Validation**: Comprehensive validation for all user inputs
-- **SQL Injection Prevention**: Enhanced parameterized queries with error handling
-- **Session Security**: Secure session configuration with timeouts
-- **Production Configuration**: Removed debug mode and proper host binding
+## 🚀 Key Features
 
-### 🛡️ Additional Security Measures
-- **Password Requirements**: Minimum 8 characters with complexity requirements
-- **Username Validation**: Alphanumeric + underscore only, 3-50 characters
-- **League Code Validation**: Alphanumeric only, 3-20 characters
-- **Score Validation**: Numeric values between 0-999
-- **Error Handling**: Comprehensive error handling and logging
-- **Flash Messages**: User-friendly error and success messages
+### Core Functionality
+- **User Authentication System**: Secure registration/login with password hashing
+- **NFL Game Predictions**: Submit weekly game score predictions
+- **League Management**: Create and join private prediction leagues
+- **Real-time Scoring**: Automatic scoring based on actual game results
+- **Leaderboards**: Dynamic standings and rankings within leagues
 
-## Installation
+### Technical Features
+- **Responsive Design**: Mobile-first Bootstrap interface
+- **Real-time Data**: ESPN API integration for live game data
+- **Session Management**: Secure user sessions with timeouts
+- **Error Handling**: Comprehensive error handling and user feedback
+- **Input Validation**: Server-side validation for all user inputs
+
+## 🛠️ Technology Stack
+
+### Backend
+- **Python 3.8+** - Core programming language
+- **Flask 2.3.3** - Web framework
+- **Flask-MySQLdb** - Database ORM
+- **Flask-WTF** - Form handling and CSRF protection
+- **Werkzeug** - Security utilities (password hashing)
+
+### Frontend
+- **Bootstrap 5** - Responsive CSS framework
+- **Jinja2** - Template engine
+- **JavaScript** - Client-side interactions
+- **CSS3** - Custom styling
+
+### Database
+- **MySQL 5.7+** - Relational database
+- **Custom Schema** - 6 normalized tables
+
+### External APIs
+- **ESPN API** - NFL game data and scores
+
+### Development Tools
+- **python-dotenv** - Environment variable management
+- **requests** - HTTP client for API calls
+
+## 🔒 Security Features
+
+### Authentication & Authorization
+- Password hashing with Werkzeug
+- Session-based authentication
+- Login required decorators
+- Secure session configuration
+
+### Input Validation & Sanitization
+- Comprehensive server-side validation
+- SQL injection prevention with parameterized queries
+- XSS protection through proper escaping
+- CSRF token protection on all forms
+
+### Security Headers & Configuration
+- Secure cookie settings
+- HTTP-only session cookies
+- SameSite cookie policy
+- Production-ready security configurations
+
+## 📊 Database Architecture
+
+The application uses a well-normalized database schema:
+
+```sql
+brycegayan_users          -- User accounts and authentication
+brycegayan_leagues        -- League information and settings
+brycegayan_users_leagues  -- Many-to-many user-league relationships
+brycegayan_predictions    -- Submitted game predictions
+brycegayan_savedpredictions -- Draft predictions (save for later)
+brycegayan_info          -- Application metadata and configuration
+```
+
+## 🚀 Getting Started
 
 ### Prerequisites
 - Python 3.8+
 - MySQL 5.7+
-- pip
+- pip package manager
 
-### Setup
+### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/yourusername/NFL-Predicting-Game.git
    cd NFL-Predicting-Game
    ```
 
-2. **Install dependencies**
+2. **Create virtual environment**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Set up environment variables**
+4. **Environment Configuration**
    Create a `.env` file in the root directory:
    ```env
    SECRET_KEY=your-super-secret-key-here
@@ -59,106 +128,122 @@ A Flask-based web application for predicting NFL game outcomes and competing in 
    FLASK_DEBUG=False
    ```
 
-4. **Set up the database**
+5. **Database Setup**
    ```sql
    CREATE DATABASE nfl_predictions;
    USE nfl_predictions;
    ```
-   Then run the SQL script:
    ```bash
    mysql -u your_user -p nfl_predictions < create_tables.sql
    ```
 
-5. **Run the application**
+6. **Run the application**
    ```bash
-   # Development
    python app.py
+   ```
    
-   # Or using the provided script
+   Or use the provided script:
+   ```bash
    runflask.cmd
    ```
 
-## Configuration
+## 🏗️ Project Structure
 
-### Development vs Production
+```
+NFL-Predicting-Game/
+├── app.py                 # Main Flask application
+├── config.py             # Configuration settings
+├── create_tables.sql     # Database schema
+├── requirements.txt      # Python dependencies
+├── runflask.cmd         # Windows startup script
+├── static/              # Static assets
+│   ├── style.css        # Custom CSS
+│   └── *.json           # Sample data files
+└── templates/           # Jinja2 templates
+    ├── base.html.j2     # Base template
+    ├── index.html.j2    # Homepage
+    ├── login.html.j2    # Login page
+    ├── signup.html.j2   # Registration page
+    ├── predictions.html.j2 # Prediction interface
+    └── league.html.j2   # League management
+```
 
-The application supports different configurations:
-
-- **Development**: Debug mode enabled, less strict security
-- **Production**: Debug disabled, enhanced security settings
-
-Set the environment variable `FLASK_ENV` to control the configuration:
-- `development` - Development settings
-- `production` - Production settings
+## 🔧 Configuration
 
 ### Environment Variables
 
 | Variable | Description | Required | Default |
 |----------|-------------|----------|---------|
-| `SECRET_KEY` | Flask secret key for sessions | Yes | None |
+| `SECRET_KEY` | Flask secret key | Yes | None |
 | `MYSQL_HOST` | MySQL server host | No | localhost |
 | `MYSQL_USER` | MySQL username | Yes | None |
 | `MYSQL_PASSWORD` | MySQL password | Yes | None |
-| `MYSQL_DB` | MySQL database name | No | nfl_predictions |
-| `FLASK_ENV` | Environment (development/production) | No | development |
-| `FLASK_DEBUG` | Enable debug mode | No | False |
+| `MYSQL_DB` | Database name | No | nfl_predictions |
+| `FLASK_ENV` | Environment mode | No | development |
+| `FLASK_DEBUG` | Debug mode | No | False |
 
-## Security Best Practices
+### Development vs Production
 
-### For Production Deployment
+The application supports different configurations:
+- **Development**: Debug mode, relaxed security for testing
+- **Production**: Enhanced security, error logging, performance optimizations
 
-1. **Use HTTPS**: Always use HTTPS in production
-2. **Strong Secret Key**: Generate a strong, random secret key
-3. **Database Security**: Use dedicated database user with minimal privileges
-4. **Environment Variables**: Never commit `.env` files to version control
-5. **Regular Updates**: Keep dependencies updated
-6. **Logging**: Monitor application logs for security issues
-7. **Backup**: Regular database backups
+## 🧪 Testing & Quality Assurance
 
-### Password Requirements
+### Code Quality
+- Comprehensive error handling with try-catch blocks
+- Input validation for all user inputs
+- Proper logging for debugging and monitoring
+- Clean, documented code with meaningful function names
 
-- Minimum 8 characters
-- At least one uppercase letter
-- At least one lowercase letter
-- At least one number
+### Security Testing
+- CSRF protection on all forms
+- SQL injection prevention
+- XSS protection through proper escaping
+- Secure session management
 
-### Input Validation
+## 🚀 Deployment
 
-All user inputs are validated:
-- Usernames: 3-50 characters, alphanumeric + underscore
-- League codes: 3-20 characters, alphanumeric only
-- League names: 2-100 characters
-- Scores: 0-999 integers
+### Production Deployment Checklist
+- [ ] Set `FLASK_ENV=production`
+- [ ] Configure HTTPS
+- [ ] Use strong secret key
+- [ ] Set up database with minimal privileges
+- [ ] Configure proper logging
+- [ ] Set up monitoring and alerts
+- [ ] Regular database backups
 
-## API Dependencies
+### Recommended Hosting Platforms
+- **Heroku** - Easy deployment with PostgreSQL
+- **AWS EC2** - Full control with RDS
+- **DigitalOcean** - VPS with managed MySQL
+- **Railway** - Modern platform with automatic deployments
 
-The application uses the ESPN API for NFL game data:
-- Endpoint: `https://site.web.api.espn.com/apis/v2/scoreboard/header?sport=football&league=nfl`
-- Rate limiting: Implemented with timeout handling
-- Error handling: Graceful fallback for API failures
-
-## Database Schema
-
-The application uses the following tables:
-- `brycegayan_users` - User accounts
-- `brycegayan_leagues` - League information
-- `brycegayan_users_leagues` - User-league relationships
-- `brycegayan_predictions` - Submitted predictions
-- `brycegayan_savedpredictions` - Draft predictions
-- `brycegayan_info` - Application metadata
-
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## License
+## 📝 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Support
+## 📞 Contact
 
-For issues and questions, please create an issue in the repository.
+- **GitHub**: [@yourusername](https://github.com/yourusername)
+- **LinkedIn**: [Your LinkedIn Profile]
+- **Email**: your.email@example.com
+
+## 🙏 Acknowledgments
+
+- ESPN API for providing NFL game data
+- Bootstrap team for the responsive UI framework
+- Flask community for the excellent web framework
+- NFL for the exciting game data that makes this project possible
+
+---
+
+**Note**: This project is designed as a portfolio piece to demonstrate full-stack development skills, security best practices, and modern web application architecture. It showcases proficiency in Python, Flask, MySQL, frontend development, and API integration.
